@@ -7,42 +7,42 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Microsoft.Azure.WebJobs.ServiceBus;
-using Microsoft.Azure.ServiceBus;
-using System.Text;
 
-namespace ServiceBus
+namespace CSharpPrecompiledStorageBlob
 {
-    public static class Process
+    public static class HttpTrigger
     {
-        [FunctionName("Process")]
+        [FunctionName("HttpTrigger")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation($"Function started {DateTime.UtcNow}");
+            log.LogInformation("C# HTTP trigger function processed a request.");
 
-            // Clear queue items
-            int deletedMessagesCount = await ServiceBusHelper.CleanUpEntity("queue-input");
-            log.LogInformation($"The queue is empty. Deleted {deletedMessagesCount}. {DateTime.UtcNow}");
+            // Clear container
+            string containerName = "blob-test";
+            StorageHelper sh = new StorageHelper(Environment.GetEnvironmentVariable("StorageConnection", EnvironmentVariableTarget.Process));
+            await sh.ClearContainer("azure-webjobs-hosts", "blobreceipts");
+            log.LogInformation($"azure-webjobs-hosts\blobreceipts cleared {DateTime.UtcNow}");
+            await sh.ClearContainer(containerName, "folder");
+            log.LogInformation($"{containerName} cleared {DateTime.UtcNow}");
 
             int.TryParse(req.Query["count"], out int count);
-            ServiceBusTrigger.messagesLeft = count;
-
+            BlobStorageTrigger.messagesLeft = count;
             if (count == 0)
             {
                 return new BadRequestObjectResult("Count is not defined");
             }
 
-            // Adding
-            await ServiceBusHelper.AddMessages("queue-input", count);
+            // Init
+            await sh.AddBlobsAsync(containerName, "folder", count);
             log.LogInformation($"{count} messages added to the queue {DateTime.UtcNow}");
 
             // Wait until all messages are processed
             do
             {
-                await Task.Delay(1000);
-            } while (ServiceBusTrigger.messagesLeft > 0);
+                await Task.Delay(100);
+            } while (BlobStorageTrigger.messagesLeft > 0);
 
             log.LogInformation($"{count} messages were processed {DateTime.UtcNow}");
 
