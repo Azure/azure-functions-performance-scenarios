@@ -1,0 +1,5 @@
+{
+    "runtime": "powershell",
+    "description": "PS Ping",
+    "isScript": true
+}

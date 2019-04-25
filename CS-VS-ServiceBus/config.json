@@ -1,0 +1,5 @@
+{
+    "runtime": "dotnet",
+    "description": "C# ServiceBus Queue (VS)",
+    "isScript": false
+}

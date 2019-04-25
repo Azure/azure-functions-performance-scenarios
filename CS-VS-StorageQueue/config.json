@@ -1,0 +1,5 @@
+{
+    "runtime": "dotnet",
+    "description": "C# Storage Queue (VS)",
+    "isScript": false
+}
