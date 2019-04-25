@@ -1,3 +1,25 @@
+# Adding new test scenario
+
+1. Create a folder in the root of the repository: {TestName}.
+2. Put your functions code in {TestName}/Content
+
+3. Add a scenario config: {TestName}/config.json:
+```
+{
+    "runtime": "dotnet",            // FUNCTIONS_WORKER_RUNTIME app setting
+    "description": "C# Ping",       // Short description
+    "isScript": true                // Set it to false for a precompiled or java function. The content folder will be automatically builded to binaries.
+}
+```
+4. Add a jmx definition file {TestName}/test.jmx:
+   Note jmx definition uses custom variables from the file in agent:
+```
+<stringProp name="HTTPSampler.domain">${APP}.azurewebsites.net</stringProp>
+...
+<stringProp name="HTTPSampler.path">/api/HttpTrigger?count=1000&amp;code=${KEY}</stringProp>
+```
+{APP} - function app name.
+{KEY} - function app function default key. 
 
 # Contributing
 
