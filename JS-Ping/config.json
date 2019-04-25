@@ -1,0 +1,5 @@
+{
+    "runtime": "node",
+    "description": "JS Ping",
+    "isScript": true
+}

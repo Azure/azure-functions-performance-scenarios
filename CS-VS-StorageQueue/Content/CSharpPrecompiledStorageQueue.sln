@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpPrecompiledStorageQueue", "CSharpPrecompiledStorageQueue\CSharpPrecompiledStorageQueue.csproj", "{B5AB7008-D9B0-4445-A548-854E0214C2F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpPrecompiledStorageQueue", "CSharpPrecompiledStorageQueue.csproj", "{B5AB7008-D9B0-4445-A548-854E0214C2F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
