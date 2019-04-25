@@ -18,8 +18,7 @@
 ...
 <stringProp name="HTTPSampler.path">/api/HttpTrigger?count=1000&amp;code=${KEY}</stringProp>
 ```
-{APP} - function app name.
-{KEY} - function app function default key. 
+{APP} - function app name, {KEY} - functions default key. 
 
 # Contributing
 
