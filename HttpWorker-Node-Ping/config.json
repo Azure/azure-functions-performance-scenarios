@@ -1,0 +1,5 @@
+{
+    "runtime": "HttpWorker",
+    "description": "HttpWorker-Node Ping",
+    "isScript": true
+}
