@@ -3,6 +3,7 @@
     {
       "type": "httpTrigger",
       "direction": "in",
+	  "authLevel": "function",
       "name": "req",
       "methods": [
         "get",
