@@ -5,8 +5,6 @@
     "type" : "httpTrigger",
     "name" : "req",
     "direction" : "in",
-    "webHookType" : "NONE",
-    "authLevel" : "anonymous",
     "methods" : [ "GET", "POST" ]
   }, {
     "type" : "http",
