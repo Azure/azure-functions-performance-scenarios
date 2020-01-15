@@ -1,9 +1,9 @@
 {
   "bindings": [
     {
+      "authLevel": "function",
       "type": "httpTrigger",
       "direction": "in",
-	  "authLevel": "function",
       "name": "req",
       "methods": [
         "get",
